@@ -13,8 +13,6 @@
 </template>
 
 <script>
-  import axios from "../.nuxt/axios";
-
   export default {
     name: "performances",
 
@@ -25,7 +23,7 @@
     },
 
     async created() {
-      this.performances = await axios.get('https://music-festival-admin-panel.herokuapp.com/performances');
+      this.performances = await this.$axios.$get('https://music-festival-admin-panel.herokuapp.com/performances');
     },
   }
 </script>
