@@ -6,12 +6,12 @@
           justify="space-around"
         >
           <v-col
-            v-for="performance in performances"
-            :key="performance.id"
+            v-for="artist in artists"
+            :key="artist.id"
             cols="auto"
           >
-            <performance
-              :performance="performance"
+            <artist
+              :artist="artist"
             />
           </v-col>
         </v-row>
@@ -21,23 +21,23 @@
 </template>
 
 <script>
-  import Performance from "../components/Performance";
+  import Artist from "../components/Artist";
 
   export default {
-    name: "performances",
+    name: "artists",
 
     components: {
-      Performance,
+      Artist,
     },
 
     data() {
       return {
-        performances: [],
+        artists: [],
       }
     },
 
     async created() {
-      this.performances = await this.$axios.$get('https://music-festival-admin-panel.herokuapp.com/performances');
+      this.artists = await this.$axios.$get('https://music-festival-admin-panel.herokuapp.com/artists');
     },
   }
 </script>

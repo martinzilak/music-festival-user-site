@@ -102,10 +102,15 @@ export default {
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
+          icon: 'mdi-account',
+          title: 'Artists',
+          to: '/artists'
+        },
+        {
+          icon: 'mdi-microphone-variant',
+          title: 'Performances',
+          to: '/performances'
+        },
       ],
       miniVariant: false,
       right: true,
