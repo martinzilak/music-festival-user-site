@@ -20,3 +20,6 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+### Maps
+* https://github.com/schlunsen/nuxt-leaflet + https://vue-leaflet.github.io/Vue2Leaflet/#/
