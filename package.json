@@ -1,0 +1,22 @@
+{
+  "name": "music-festival-user-site",
+  "version": "1.0.0",
+  "description": "an example frontend for a diploma thesis application for managing music festivals",
+  "author": "Martin Zilak",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "lodash.template": "^4.5.0",
+    "nuxt": "^2.11.0",
+    "nuxt-leaflet": "0.0.19"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.0.0"
+  }
+}
