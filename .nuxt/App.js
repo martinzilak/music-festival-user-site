@@ -10,8 +10,11 @@ import NuxtError from '../layouts/error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
+<<<<<<< HEAD
 import '../node_modules/leaflet/dist/leaflet.css'
 
+=======
+>>>>>>> 1243cbe9a1da216e6acba34d34928cc50f956cca
 import '../node_modules/vuetify/dist/vuetify.css'
 
 import _6f6c098b from '../layouts/default.vue'

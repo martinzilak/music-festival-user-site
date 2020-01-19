@@ -12,7 +12,10 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 /* Plugins */
 
 import nuxt_plugin_plugin_596ddfe9 from 'nuxt_plugin_plugin_596ddfe9' // Source: ./vuetify/plugin.js (mode: 'all')
+<<<<<<< HEAD
 import nuxt_plugin_nuxtleaflet_2dc63faa from 'nuxt_plugin_nuxtleaflet_2dc63faa' // Source: ./nuxt-leaflet.js (mode: 'client')
+=======
+>>>>>>> 1243cbe9a1da216e6acba34d34928cc50f956cca
 import nuxt_plugin_axios_18fc18bb from 'nuxt_plugin_axios_18fc18bb' // Source: ./axios.js (mode: 'all')
 
 // Component: <ClientOnly>
@@ -151,10 +154,13 @@ async function createApp (ssrContext) {
     await nuxt_plugin_plugin_596ddfe9(app.context, inject)
   }
 
+<<<<<<< HEAD
   if (process.client && typeof nuxt_plugin_nuxtleaflet_2dc63faa === 'function') {
     await nuxt_plugin_nuxtleaflet_2dc63faa(app.context, inject)
   }
 
+=======
+>>>>>>> 1243cbe9a1da216e6acba34d34928cc50f956cca
   if (typeof nuxt_plugin_axios_18fc18bb === 'function') {
     await nuxt_plugin_axios_18fc18bb(app.context, inject)
   }
