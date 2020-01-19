@@ -11,9 +11,9 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_596ddfe9 from 'nuxt_plugin_plugin_596ddfe9' // Source: ./vuetify/plugin.js (mode: 'all')
-import nuxt_plugin_nuxtleaflet_2dc63faa from 'nuxt_plugin_nuxtleaflet_2dc63faa' // Source: ./nuxt-leaflet.js (mode: 'client')
-import nuxt_plugin_axios_18fc18bb from 'nuxt_plugin_axios_18fc18bb' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_plugin_70dcc4e4 from 'nuxt_plugin_plugin_70dcc4e4' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_nuxtleaflet_0c97228f from 'nuxt_plugin_nuxtleaflet_0c97228f' // Source: ./nuxt-leaflet.js (mode: 'client')
+import nuxt_plugin_axios_1cee7d76 from 'nuxt_plugin_axios_1cee7d76' // Source: ./axios.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -147,16 +147,16 @@ async function createApp (ssrContext) {
 
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_596ddfe9 === 'function') {
-    await nuxt_plugin_plugin_596ddfe9(app.context, inject)
+  if (typeof nuxt_plugin_plugin_70dcc4e4 === 'function') {
+    await nuxt_plugin_plugin_70dcc4e4(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_nuxtleaflet_2dc63faa === 'function') {
-    await nuxt_plugin_nuxtleaflet_2dc63faa(app.context, inject)
+  if (process.client && typeof nuxt_plugin_nuxtleaflet_0c97228f === 'function') {
+    await nuxt_plugin_nuxtleaflet_0c97228f(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_18fc18bb === 'function') {
-    await nuxt_plugin_axios_18fc18bb(app.context, inject)
+  if (typeof nuxt_plugin_axios_1cee7d76 === 'function') {
+    await nuxt_plugin_axios_1cee7d76(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first
