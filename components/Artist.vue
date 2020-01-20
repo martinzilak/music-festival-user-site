@@ -4,7 +4,7 @@
     max-width="400px"
   >
     <v-img
-      :src="artist.picture[0].url"
+      :src="pic"
       height="200px"
     />
 
@@ -13,24 +13,33 @@
       class="white--text align-end"
     />
 
-    <social-buttons
-      :social="artist.social"
+    <link-buttons
+      :social="artist.link"
       width="100%"
     />
   </v-card>
 </template>
 
 <script>
-  import SocialButtons from "./SocialButtons";
+  import LinkButtons from "./LinkButtons";
+  import {devPic, prodPic} from "../plugins/settings";
 
   export default {
     name: "Artist",
 
     components: {
-      SocialButtons,
+      LinkButtons,
     },
 
     props: ['artist'],
+
+    computed: {
+      pic() {
+        // const picMethod = devPic;
+        const picMethod = prodPic;
+        return picMethod(this.artist.pictures[0]);
+      },
+    },
   }
 </script>
 

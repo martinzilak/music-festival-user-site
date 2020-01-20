@@ -29,26 +29,34 @@
 </template>
 
 <script>
+  import {LOCATIONS, PROD_URL} from "../plugins/settings";
+
   export default {
     name: 'plan',
 
     data () {
       return {
-        mapZoom: 13,
-        mapCenter: [49.187618, 16.582569],
+        mapZoom: 16,
+        mapCenter: [40, 40],
         mapUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         polygon: {
-          latLngs: [
-            [49.189245, 16.587092],
-            [49.190310, 16.578895],
-            [49.193452, 16.570355],
-            [49.189469, 16.569926],
-            [49.184560, 16.581470],
-            [49.187702, 16.587092],
-          ],
+          latLngs: [],
           color: 'green',
         },
       };
+    },
+
+    async created () {
+      // const url = DEV_URL;
+      const url = PROD_URL;
+      const locations = await this.$axios.$get(`${url}${LOCATIONS}`);
+
+      this.polygon.latLngs = locations
+        .filter(it => it.type === 'border')
+        .map(it => [Number(it.latitude), Number(it.longitude)]);
+
+      const center = locations.find(it => it.type === 'center');
+      this.mapCenter = [Number(center.latitude), Number(center.longitude)];
     },
   }
 </script>

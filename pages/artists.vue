@@ -22,6 +22,7 @@
 
 <script>
   import Artist from "../components/Artist";
+  import {ARTISTS, DEV_URL, PROD_URL} from "../plugins/settings";
 
   export default {
     name: "artists",
@@ -37,7 +38,9 @@
     },
 
     async created() {
-      this.artists = await this.$axios.$get('https://music-festival-admin-panel.herokuapp.com/artists');
+      // const url = DEV_URL;
+      const url = PROD_URL;
+      this.artists = await this.$axios.$get(`${url}${ARTISTS}`);
     },
   }
 </script>
