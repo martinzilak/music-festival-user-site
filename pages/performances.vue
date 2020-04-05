@@ -22,6 +22,7 @@
 
 <script>
   import Performance from "../components/Performance";
+  import {getUrl, PERFORMANCES} from "../plugins/settings";
 
   export default {
     name: "performances",
@@ -37,7 +38,7 @@
     },
 
     async created() {
-      this.performances = await this.$axios.$get('https://music-festival-admin-panel.herokuapp.com/performances');
+      this.performances = await this.$axios.$get(getUrl(PERFORMANCES));
     },
   }
 </script>

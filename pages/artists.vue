@@ -22,7 +22,7 @@
 
 <script>
   import Artist from "../components/Artist";
-  import {ARTISTS, DEV_URL, PROD_URL} from "../plugins/settings";
+  import {ARTISTS, getUrl} from "../plugins/settings";
 
   export default {
     name: "artists",
@@ -38,9 +38,7 @@
     },
 
     async created() {
-      // const url = DEV_URL;
-      const url = PROD_URL;
-      this.artists = await this.$axios.$get(`${url}${ARTISTS}`);
+      this.artists = await this.$axios.$get(getUrl(ARTISTS));
     },
   }
 </script>

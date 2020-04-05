@@ -22,7 +22,7 @@
 
 <script>
   import LinkButtons from "./LinkButtons";
-  import {devPic, prodPic} from "../plugins/settings";
+  import {getPicture} from "../plugins/settings";
 
   export default {
     name: "Artist",
@@ -35,9 +35,7 @@
 
     computed: {
       pic() {
-        // const picMethod = devPic;
-        const picMethod = prodPic;
-        return picMethod(this.artist.pictures[0]);
+        return getPicture(this.artist.pictures[0]);
       },
     },
   }

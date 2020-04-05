@@ -14,7 +14,7 @@
         :key="i"
       >
         <v-img
-          :src="picture.url"
+          :src="getPicture(picture)"
           height="100%"
         />
       </v-carousel-item>
@@ -44,6 +44,8 @@
 </template>
 
 <script>
+  import {getPicture} from '../plugins/settings';
+
   export default {
     name: "Performance",
 

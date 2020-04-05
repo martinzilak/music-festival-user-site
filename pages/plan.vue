@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import {LOCATIONS, PROD_URL} from "../plugins/settings";
+  import {getUrl, LOCATIONS, PROD_URL} from "../plugins/settings";
 
   export default {
     name: 'plan',
@@ -47,9 +47,7 @@
     },
 
     async created () {
-      // const url = DEV_URL;
-      const url = PROD_URL;
-      const locations = await this.$axios.$get(`${url}${LOCATIONS}`);
+      const locations = await this.$axios.$get(getUrl(LOCATIONS));
 
       this.polygon.latLngs = locations
         .filter(it => it.type === 'border')
