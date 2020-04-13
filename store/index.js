@@ -5,6 +5,7 @@ const createStore = () => {
         state: () => ({
             jwt: '',
             user: {},
+            language: 'en',
         }),
 
         mutations: {
@@ -13,6 +14,9 @@ const createStore = () => {
             },
             setUser(state, user) {
                 state.user = user;
+            },
+            setLanguage(state, language) {
+                state.language = language;
             },
         },
 
@@ -26,6 +30,10 @@ const createStore = () => {
                 commit('setJwtToken', '');
                 commit('setUser', {});
             },
+
+            changeLanguage({commit}, language) {
+                commit('setLanguage', language);
+            },
         },
 
         getters: {
@@ -37,7 +45,10 @@ const createStore = () => {
             },
             getUsername(state) {
                 return state.user.username;
-            }
+            },
+            getLanguage(state) {
+                return state.language;
+            },
         },
     });
 };

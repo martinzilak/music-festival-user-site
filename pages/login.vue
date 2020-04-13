@@ -46,6 +46,21 @@
                     justify="space-around"
                 >
                     <v-col cols="auto" >
+                        <v-select
+                            :value="localLanguage"
+                            :items="languages"
+                            label="Language"
+                        />
+
+                        <v-btn
+                            color="success"
+                            @click="saveLanguage"
+                        >
+                            Save
+                        </v-btn>
+
+                        <br />
+
                         {{ `Logged in as ${getUsername}` }}
 
                         <br />
@@ -73,6 +88,8 @@
                 identifier: '',
                 password: '',
                 alert: false,
+                languages: ['sk', 'en'],
+                localLanguage: 'en',
             }
         },
 
@@ -87,16 +104,17 @@
 
         methods: {
             async login() {
-                const url = DEV_URL;
-                // const url = PROD_URL;
-
                 const response = this.$axios.$post(getUrl(LOGIN), {
                     identifier: this.identifier,
                     password: this.password,
                 });
 
                 response
-                    .then(res => this.$store.dispatch('login', res))
+                    .then(res => {
+                        this.$store.dispatch('login', res);
+                        this.$store.dispatch('changeLanguage', this.localLanguage);
+                        this.alert = false;
+                    })
                     .catch(_ => {
                         this.alert = true;
                         this.identifier = '';
@@ -106,7 +124,11 @@
 
             logout() {
                 this.$store.dispatch('logout');
-            }
+            },
+
+            saveLanguage() {
+                this.$store.dispatch('changeLanguage', this.localLanguage);
+            },
         },
     }
 </script>

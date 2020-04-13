@@ -13,6 +13,12 @@
       class="white--text align-end"
     />
 
+    <v-card-text>
+      <div>
+        {{description}}
+      </div>
+    </v-card-text>
+
     <link-buttons
       :social="artist.link"
       width="100%"
@@ -37,6 +43,11 @@
       pic() {
         return getPicture(this.artist.pictures[0]);
       },
+
+      description() {
+        const language = this.$store.getters.getLanguage;
+        return this.artist.descriptions.filter(desc => desc.language === language)[0].text;
+      }
     },
   }
 </script>
