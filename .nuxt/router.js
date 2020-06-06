@@ -28,23 +28,43 @@ export const routerOptions = {
   routes: [{
     path: "/artists",
     component: _b410b2b8,
-    name: "artists"
+    name: "artists___en"
   }, {
     path: "/login",
     component: _46c6d4fe,
-    name: "login"
+    name: "login___en"
   }, {
     path: "/performances",
     component: _f12e014a,
-    name: "performances"
+    name: "performances___en"
   }, {
     path: "/plan",
     component: _3fedb141,
-    name: "plan"
+    name: "plan___en"
+  }, {
+    path: "/sk",
+    component: _12f4f26a,
+    name: "index___sk"
+  }, {
+    path: "/sk/artists",
+    component: _b410b2b8,
+    name: "artists___sk"
+  }, {
+    path: "/sk/login",
+    component: _46c6d4fe,
+    name: "login___sk"
+  }, {
+    path: "/sk/performances",
+    component: _f12e014a,
+    name: "performances___sk"
+  }, {
+    path: "/sk/plan",
+    component: _3fedb141,
+    name: "plan___sk"
   }, {
     path: "/",
     component: _12f4f26a,
-    name: "index"
+    name: "index___en"
   }],
 
   fallback: false

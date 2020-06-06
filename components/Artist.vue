@@ -15,12 +15,12 @@
 
     <v-card-text>
       <div>
-        {{description}}
+        {{ description }}
       </div>
     </v-card-text>
 
     <link-buttons
-      :social="artist.link"
+      :links="artist.links"
       width="100%"
     />
   </v-card>
@@ -46,7 +46,7 @@
 
       description() {
         const language = this.$store.getters.getLanguage;
-        return this.artist.descriptions.filter(desc => desc.language === language)[0].text;
+        return this.artist.description.filter(desc => desc.language.code === language)[0].text;
       }
     },
   }

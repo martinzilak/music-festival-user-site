@@ -13,6 +13,8 @@ import { createStore } from './store.js'
 /* Plugins */
 
 import nuxt_plugin_plugin_252b2660 from 'nuxt_plugin_plugin_252b2660' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_pluginrouting_d8589f5c from 'nuxt_plugin_pluginrouting_d8589f5c' // Source: ./nuxt-i18n/plugin.routing.js (mode: 'all')
+import nuxt_plugin_pluginmain_61d16c5d from 'nuxt_plugin_pluginmain_61d16c5d' // Source: ./nuxt-i18n/plugin.main.js (mode: 'all')
 import nuxt_plugin_nuxtleaflet_65024b5e from 'nuxt_plugin_nuxtleaflet_65024b5e' // Source: ./nuxt-leaflet.js (mode: 'client')
 import nuxt_plugin_axios_00cd1bf4 from 'nuxt_plugin_axios_00cd1bf4' // Source: ./axios.js (mode: 'all')
 
@@ -173,6 +175,14 @@ async function createApp (ssrContext) {
 
   if (typeof nuxt_plugin_plugin_252b2660 === 'function') {
     await nuxt_plugin_plugin_252b2660(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_pluginrouting_d8589f5c === 'function') {
+    await nuxt_plugin_pluginrouting_d8589f5c(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_pluginmain_61d16c5d === 'function') {
+    await nuxt_plugin_pluginmain_61d16c5d(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_nuxtleaflet_65024b5e === 'function') {

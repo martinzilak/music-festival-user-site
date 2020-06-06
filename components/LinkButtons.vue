@@ -1,35 +1,35 @@
 <template>
   <v-card-actions>
     <template
-      v-if="link"
+      v-if="links"
     >
       <v-spacer />
 
       <v-btn
-        v-if="link.website"
+        v-if="links.website"
         title="Website"
         icon
-        :href="link.website"
+        :href="links.website"
         target="_blank"
       >
         <v-icon>mdi-web</v-icon>
       </v-btn>
 
       <v-btn
-        v-if="link.facebook"
+        v-if="links.facebook"
         title="Facebook"
         icon
-        :href="link.facebook"
+        :href="links.facebook"
         target="_blank"
       >
         <v-icon>mdi-facebook</v-icon>
       </v-btn>
 
       <v-btn
-        v-if="link.instagram"
+        v-if="links.instagram"
         title="Instagram"
         icon
-        :href="link.instagram"
+        :href="links.instagram"
         target="_blank"
       >
         <v-icon>mdi-instagram</v-icon>
@@ -42,7 +42,7 @@
   export default {
     name: "LinkButtons",
 
-    props: ['link'],
+    props: ['links'],
   }
 </script>
 

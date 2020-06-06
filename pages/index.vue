@@ -11,19 +11,19 @@
     >
       <v-card>
         <v-card-title class="headline">
-          an example frontend for a diploma thesis application for managing music festivals
+          {{ $t('title') }}
         </v-card-title>
         <v-card-text>
-          test
+          {{ $t('titleText') }}
         </v-card-text>
         <v-card-actions>
           <v-spacer />
           <v-btn
             color="primary"
             nuxt
-            to="/performances"
+            :to="localePath('/performances')"
           >
-            view the performances
+            {{ `${$t('viewThe')}${$t('performances')}` }}
           </v-btn>
         </v-card-actions>
       </v-card>

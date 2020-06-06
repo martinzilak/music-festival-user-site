@@ -6,8 +6,8 @@ export default {
   ** Headers of the page
   */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s',
+    title: 'Music Festival User Site',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -44,6 +44,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     'nuxt-leaflet',
+    'nuxt-i18n',
   ],
   /*
   ** Axios module configuration
@@ -80,6 +81,27 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+    }
+  },
+  /*
+  ** i18n configuration
+  */
+  i18n: {
+    locales: ['en', 'sk'],
+    defaultLocale: 'en',
+    detectBrowserLanguage: {
+      alwaysRedirect: true,
+      fallbackLocale: 'en'
+    },
+    vuex: {
+      syncLocale: true
+    },
+    vueI18n: {
+      fallbackLocale: 'en',
+      messages: {
+        en: require('./locales/en.json'),
+        sk: require('./locales/sk.json')
+      }
     }
   }
 }

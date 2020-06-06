@@ -12,7 +12,7 @@
                         dense
                         dismissible
                     >
-                        There was an error while trying to log in.
+                        {{ $t('loginError') }}
                     </v-alert>
                 </v-row>
 
@@ -23,20 +23,20 @@
                     <v-col cols="auto" >
                         <v-text-field
                             v-model="identifier"
-                            label="Identifier"
+                            :label="$t('identifier')"
                         />
 
                         <v-text-field
                             v-model="password"
                             type="password"
-                            label="Password"
+                            :label="$t('password')"
                         />
 
                         <v-btn
                             color="success"
                             @click="login"
                         >
-                            Log in
+                            {{ $t('login') }}
                         </v-btn>
                     </v-col>
                 </v-row>
@@ -46,22 +46,7 @@
                     justify="space-around"
                 >
                     <v-col cols="auto" >
-                        <v-select
-                            :value="localLanguage"
-                            :items="languages"
-                            label="Language"
-                        />
-
-                        <v-btn
-                            color="success"
-                            @click="saveLanguage"
-                        >
-                            Save
-                        </v-btn>
-
-                        <br />
-
-                        {{ `Logged in as ${getUsername}` }}
+                        {{ $t('loggedInAs') }}<b>{{ getUsername }}</b>
 
                         <br />
 
@@ -69,7 +54,7 @@
                             color="success"
                             @click="logout"
                         >
-                            Log out
+                            {{ $t('logout') }}
                         </v-btn>
                     </v-col>
                 </v-row>
@@ -88,8 +73,6 @@
                 identifier: '',
                 password: '',
                 alert: false,
-                languages: ['sk', 'en'],
-                localLanguage: 'en',
             }
         },
 
@@ -112,7 +95,6 @@
                 response
                     .then(res => {
                         this.$store.dispatch('login', res);
-                        this.$store.dispatch('changeLanguage', this.localLanguage);
                         this.alert = false;
                     })
                     .catch(_ => {
@@ -124,10 +106,6 @@
 
             logout() {
                 this.$store.dispatch('logout');
-            },
-
-            saveLanguage() {
-                this.$store.dispatch('changeLanguage', this.localLanguage);
             },
         },
     }
