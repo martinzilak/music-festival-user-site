@@ -23,3 +23,6 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 ### Maps
 * https://github.com/schlunsen/nuxt-leaflet + https://vue-leaflet.github.io/Vue2Leaflet/#/
+
+### Localization
+* https://nuxt-community.github.io/nuxt-i18n/
