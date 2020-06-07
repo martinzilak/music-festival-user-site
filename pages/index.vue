@@ -16,16 +16,6 @@
         <v-card-text>
           {{ $t('titleText') }}
         </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            :to="localePath('/performances')"
-          >
-            {{ `${$t('viewThe')}${$t('performances')}` }}
-          </v-btn>
-        </v-card-actions>
       </v-card>
     </v-flex>
   </v-layout>

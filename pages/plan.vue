@@ -61,9 +61,9 @@
 </template>
 
 <script>
-  import {getUrl, LOCATIONS} from "../plugins/settings";
+  import {getUrl, groupByParam, LOCATIONS} from "../plugins/settings";
 
-  const markerColors = {
+  const MARKER_COLORS = {
     stage: 'black',
     food: 'red',
     drink: 'indigo',
@@ -72,7 +72,7 @@
     info: 'light-blue',
     fallback: 'white',
   };
-  const markerIcons = {
+  const MARKER_ICONS = {
     stage: 'mdi-speaker',
     food: 'mdi-noodles',
     drink: 'mdi-cup-water',
@@ -108,23 +108,14 @@
 
     async created () {
       const locations = await this.$axios.$get(getUrl(LOCATIONS));
-      const locationsByType = locations.reduce(
-        (result, location) => ({
-          ...result,
-          [location.type]: [
-            ...(result[location.type] || []),
-            location,
-          ],
-        }),
-        {},
-      );
+      const locationsByType = groupByParam(locations, 'type');
 
       this.layers = Object.keys(locationsByType)
         .filter(locType => !locTypesWithoutMarker.includes(locType))
         .map(locType => ({
           visible: true,
-          color: markerColors[locType] || markerColors.fallback,
-          icon: markerIcons[locType] || markerIcons.fallback,
+          color: MARKER_COLORS[locType] || MARKER_COLORS.fallback,
+          icon: MARKER_ICONS[locType] || MARKER_ICONS.fallback,
           name: this.$i18n.t(locType),
           type: locType,
           markers: locationsByType[locType],

@@ -10,7 +10,7 @@
       height="200px"
     >
       <v-carousel-item
-        v-for="(picture, i) in [performance.artist.picture[0], performance.stage.pictures[0]]"
+        v-for="(picture, i) in [performance.artist.pictures[0], performance.stage.pictures[0]]"
         :key="i"
       >
         <v-img
@@ -38,7 +38,7 @@
         mdi-calendar-clock
       </v-icon>
 
-      {{ performance.datetime }}
+      {{ `${$d($moment(performance.start).toDate())}, ${$d($moment(performance.start).toDate(), 'time')} - ${$d($moment(performance.end).toDate(), 'time')}` }}
     </v-card-text>
   </v-card>
 </template>
@@ -50,6 +50,12 @@
     name: "Performance",
 
     props: ['performance'],
+
+    methods: {
+      getPicture(picture) {
+        return getPicture(picture);
+      }
+    },
   }
 </script>
 

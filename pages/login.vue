@@ -3,20 +3,6 @@
         <v-flex>
             <v-container fluid>
                 <v-row
-                    v-if="alert"
-                    justify="space-around"
-                >
-                    <v-alert
-                        v-model="alert"
-                        type="error"
-                        dense
-                        dismissible
-                    >
-                        {{ $t('loginError') }}
-                    </v-alert>
-                </v-row>
-
-                <v-row
                     v-if="!isLoggedIn"
                     justify="space-around"
                 >
@@ -64,9 +50,8 @@
 </template>
 
 <script>
-    import {LOGIN, getUrl} from "../plugins/settings";
-
     export default {
+        name: "login",
 
         data() {
             return {
@@ -87,21 +72,10 @@
 
         methods: {
             async login() {
-                const response = this.$axios.$post(getUrl(LOGIN), {
+                await this.$store.dispatch('login', {
                     identifier: this.identifier,
                     password: this.password,
                 });
-
-                response
-                    .then(res => {
-                        this.$store.dispatch('login', res);
-                        this.alert = false;
-                    })
-                    .catch(_ => {
-                        this.alert = true;
-                        this.identifier = '';
-                        this.password = '';
-                    });
             },
 
             logout() {

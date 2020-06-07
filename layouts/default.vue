@@ -41,7 +41,6 @@
           v-model="localLanguage"
           :items="languages"
           :label="$t('language')"
-          @change="languageChanged"
           prepend-icon="mdi-web"
           style="margin-top: 12px; width: 180px !important;"
           solo
@@ -72,7 +71,7 @@
       :fixed="fixed"
       app
     >
-      <span>{{ new Date().getFullYear() }} Žilák</span>
+      <span>{{ $moment().format('YYYY') }} Žilák</span>
     </v-footer>
   </v-app>
 </template>
@@ -81,13 +80,12 @@
   export default {
     data () {
       return {
-        localLanguage: 'en',
         drawer: true,
         fixed: false,
         items: [
           {
             icon: 'mdi-apps',
-            title: 'intro',
+            title: 'news',
             to: '/'
           },
           {
@@ -99,6 +97,11 @@
             icon: 'mdi-speaker',
             title: 'performances',
             to: '/performances'
+          },
+          {
+            icon: 'mdi-timetable',
+            title: 'schedule',
+            to: '/schedule'
           },
           {
             icon: 'mdi-map-legend',
@@ -123,6 +126,15 @@
         ];
       },
 
+      localLanguage: {
+        get() {
+          return this.$store.getters.getLanguage;
+        },
+        set(newValue) {
+          this.$store.dispatch('changeLanguage', newValue);
+        }
+      },
+
       accountText() {
         if (this.$store.getters.isUserLoggedIn) {
           return this.$store.getters.getUsername;
@@ -133,15 +145,11 @@
     },
 
     created () {
-      this.localLanguage = this.$i18n.locale;
-      this.$store.dispatch('changeLanguage', this.localLanguage);
-    },
-
-    methods: {
-      languageChanged() {
-        this.$store.dispatch('changeLanguage', this.localLanguage);
+      if (this.$store.getters.isUserLoggedIn) {
         this.$i18n.setLocale(this.localLanguage);
-      },
+      } else {
+        this.localLanguage = this.$i18n.locale;
+      }
     },
   }
 </script>

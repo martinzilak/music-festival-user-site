@@ -27,5 +27,8 @@
   "other": "Iné",
   "border": "Okraj",
   "center": "Stred",
-  "bound": "Hranica"
+  "bound": "Hranica",
+  "schedule": "Harmonogram",
+  "news": "Novinky",
+  "favoritesOnly": "Zobraziť iba obľúbené vystúpenia"
 }

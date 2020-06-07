@@ -27,5 +27,8 @@
   "other": "Other",
   "border": "Border",
   "center": "Center",
-  "bound": "Bound"
+  "bound": "Bound",
+  "schedule": "Schedule",
+  "news": "News",
+  "favoritesOnly": "Show only favorite performances"
 }
