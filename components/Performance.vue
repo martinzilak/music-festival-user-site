@@ -4,9 +4,9 @@
     max-width="400px"
   >
     <v-carousel
-      :cycle="false"
+      cycle
       hide-delimiters
-      show-arrows-on-hover
+      show-arrows
       height="200px"
     >
       <v-carousel-item

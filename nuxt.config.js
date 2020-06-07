@@ -46,6 +46,7 @@ export default {
     'nuxt-leaflet',
     'nuxt-i18n',
     '@nuxtjs/moment',
+    '@nuxtjs/device'
   ],
   /*
   ** Axios module configuration
@@ -112,7 +113,15 @@ export default {
           },
           weekday: {
             weekday: 'long',
-          }
+          },
+          datetime: {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+          },
         },
         sk: {
           time: {
@@ -121,7 +130,14 @@ export default {
           },
           weekday: {
             weekday: 'long',
-          }
+          },
+          datetime: {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+          },
         },
       },
     }

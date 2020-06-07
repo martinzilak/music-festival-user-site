@@ -5,6 +5,7 @@ export const ARTISTS = 'artists';
 export const PERFORMANCES = 'performances';
 export const LOGIN = 'auth/local';
 export const USERS = 'users';
+export const MESSAGES = 'messages';
 
 const DEV_URL = 'http://localhost:1337';
 const PROD_URL = 'https://music-festival-admin-panel.herokuapp.com';

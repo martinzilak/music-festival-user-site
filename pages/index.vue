@@ -17,10 +17,36 @@
           {{ $t('titleText') }}
         </v-card-text>
       </v-card>
+
+      <message
+        v-for="message in messages"
+        :key="message.id"
+        :message="message"
+      />
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-export default {}
+import {getUrl, MESSAGES} from "../plugins/settings";
+import Message from "../components/Message";
+
+export default {
+  name: "index",
+
+  components: {
+    Message,
+  },
+
+  data() {
+    return {
+      messages: [],
+    };
+  },
+
+  async created() {
+    const messages = await this.$axios.$get(getUrl(MESSAGES));
+    this.messages = messages.sort((m, other) => this.$moment(m.datetime).isBefore(this.$moment(other.datetime)) ? -1 : 1);
+  },
+}
 </script>

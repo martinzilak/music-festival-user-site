@@ -30,9 +30,13 @@
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon
+        @click.stop="drawer = !drawer"
+      />
 
-      <v-toolbar-title v-text="$t(title)" />
+      <v-toolbar-title>
+        {{ formattedTitle }}
+      </v-toolbar-title>
 
       <v-spacer />
 
@@ -41,8 +45,8 @@
           v-model="localLanguage"
           :items="languages"
           :label="$t('language')"
-          prepend-icon="mdi-web"
-          style="margin-top: 12px; width: 180px !important;"
+          :prepend-icon="$device.isMobile ? '' : 'mdi-web'"
+          :style="`margin-top: 12px; width: ${$device.isMobile ? 75 : 180}px !important;`"
           solo
           dense
           single-line
@@ -53,7 +57,7 @@
           :to="localePath(account.to)"
           exact
         >
-          <v-icon left>
+          <v-icon>
             {{ account.icon }}
           </v-icon>
           {{ accountText }}
@@ -80,7 +84,6 @@
   export default {
     data () {
       return {
-        drawer: true,
         fixed: false,
         items: [
           {
@@ -119,10 +122,27 @@
     },
 
     computed: {
+      drawer: {
+        get() {
+          return this.$store.getters.getDrawer;
+        },
+        set(newValue) {
+          this.$store.dispatch('setDrawer', newValue)
+        }
+      },
+
+      formattedTitle() {
+        if (this.$device.isMobile) {
+          return `${this.$t(this.title).toString().split(' ').map(i => i.charAt(0)).join('')}`.toUpperCase();
+        } else {
+          return `${this.$t(this.title)}`;
+        }
+      },
+
       languages() {
         return [
-          { text: this.$i18n.t('en'), value: 'en' },
-          { text: this.$i18n.t('sk'), value: 'sk' }
+          { text: this.$device.isMobile ? 'En' : this.$i18n.t('en'), value: 'en' },
+          { text: this.$device.isMobile ? 'Sk' : this.$i18n.t('sk'), value: 'sk' }
         ];
       },
 
@@ -136,6 +156,10 @@
       },
 
       accountText() {
+        if (this.$device.isMobile) {
+          return null;
+        }
+
         if (this.$store.getters.isUserLoggedIn) {
           return this.$store.getters.getUsername;
         }
@@ -145,6 +169,8 @@
     },
 
     created () {
+      this.$store.dispatch('setDrawer', !this.$device.isMobile);
+
       if (this.$store.getters.isUserLoggedIn) {
         this.$i18n.setLocale(this.localLanguage);
       } else {

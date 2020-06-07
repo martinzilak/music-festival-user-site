@@ -2,7 +2,11 @@
   <v-layout>
     <v-flex>
       <v-container fluid>
-        <div id="map-wrap" style="height: 88vh">
+        <div
+          v-if="!$device.isMobile || !drawer"
+          id="map-wrap"
+          :style="`height: 88vh; width: ${$device.isMobile ? 90 : 75}vw`"
+        >
           <no-ssr>
             <l-map
               :zoom=mapZoom
@@ -98,6 +102,12 @@
         },
         layers: [],
       };
+    },
+
+    computed: {
+      drawer() {
+        return this.$store.getters.getDrawer;
+      }
     },
 
     methods: {

@@ -4,6 +4,7 @@ import {getUrl, LOGIN, USERS, PERFORMANCES} from "../plugins/settings";
 const createStore = () => {
     return new Vuex.Store({
         state: () => ({
+            drawer: true,
             jwt: '',
             user: {},
             language: 'en',
@@ -11,6 +12,9 @@ const createStore = () => {
         }),
 
         mutations: {
+            setDrawer(state, drawer) {
+                state.drawer = drawer;
+            },
             setJwtToken(state, jwt) {
                 state.jwt = jwt;
             },
@@ -26,6 +30,10 @@ const createStore = () => {
         },
 
         actions: {
+            setDrawer({ commit }, drawer) {
+                commit('setDrawer', drawer);
+            },
+
             async login({ commit }, data) {
                 const response = this.$axios.$post(getUrl(LOGIN), data);
 
@@ -92,6 +100,9 @@ const createStore = () => {
         },
 
         getters: {
+            getDrawer(state) {
+                return state.drawer;
+            },
             isUserLoggedIn(state) {
                 return state.jwt !== '';
             },
