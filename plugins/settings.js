@@ -1,4 +1,4 @@
-const ENV = 'DEV';
+const ENV = process.env.NODE_ENV === 'production' ? 'PROD' : 'DEV';
 
 export const LOCATIONS = 'locations';
 export const ARTISTS = 'artists';
