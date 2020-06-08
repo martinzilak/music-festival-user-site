@@ -30,5 +30,6 @@
   "bound": "Bound",
   "schedule": "Schedule",
   "news": "News",
-  "favoritesOnly": "Show only favorite performances"
+  "favoritesOnly": "Show only favorite performances",
+  "stages": "Stages"
 }

@@ -9,6 +9,7 @@ const _f12e014a = () => interopDefault(import('../pages/performances.vue' /* web
 const _3fedb141 = () => interopDefault(import('../pages/plan.vue' /* webpackChunkName: "pages/plan" */))
 const _3b3a51af = () => interopDefault(import('../pages/schedule.vue' /* webpackChunkName: "pages/schedule" */))
 const _12f4f26a = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _658add4d = () => interopDefault(import('../pages/stages.vue' /* webpackChunkName: "pages/stages" */))
 
 // TODO: remove in Nuxt 3
 const emptyFn = () => {}
@@ -51,6 +52,10 @@ export const routerOptions = {
     component: _12f4f26a,
     name: "index___sk"
   }, {
+    path: "/stages",
+    component: _658add4d,
+    name: "stages___en"
+  }, {
     path: "/sk/artists",
     component: _b410b2b8,
     name: "artists___sk"
@@ -70,6 +75,10 @@ export const routerOptions = {
     path: "/sk/schedule",
     component: _3b3a51af,
     name: "schedule___sk"
+  }, {
+    path: "/sk/stages",
+    component: _658add4d,
+    name: "stages___sk"
   }, {
     path: "/",
     component: _12f4f26a,

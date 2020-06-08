@@ -92,12 +92,17 @@
             to: '/'
           },
           {
-            icon: 'mdi-microphone-variant',
+            icon: 'mdi-account-supervisor',
             title: 'artists',
             to: '/artists'
           },
           {
-            icon: 'mdi-speaker',
+            icon: 'mdi-iframe-array',
+            title: 'stages',
+            to: '/stages'
+          },
+          {
+            icon: 'mdi-microphone-variant',
             title: 'performances',
             to: '/performances'
           },
