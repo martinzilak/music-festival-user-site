@@ -8,7 +8,7 @@ export const USERS = 'users';
 export const MESSAGES = 'messages';
 
 const DEV_URL = 'http://localhost:1337';
-const PROD_URL = 'https://music-festival-admin-panel.herokuapp.com';
+const PROD_URL = 'https://music-festival-management.herokuapp.com';
 
 export const getUrl = (location, id = undefined) => `${ENV.toLowerCase() === 'prod' ? PROD_URL : DEV_URL}/${location}${id ? `/${id}` : ''}`;
 export const getPicture = (picture) => ENV.toLowerCase() === 'prod' ? picture.url : DEV_URL + picture.url;
