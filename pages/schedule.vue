@@ -137,7 +137,7 @@
 
             unsetFavorite(event) {
                 this.$store.dispatch('removeFavorite', event.performance);
-                event.color = STAGE_COLORS[event.stage];
+                event.color = STAGE_COLORS[event.stage] ?? STAGE_COLORS.fallback;
             },
         },
     }

@@ -1,11 +1,13 @@
 <template>
   <v-layout>
-    <v-flex>
+    <v-flex
+        style="z-index: 0;"
+    >
       <v-container fluid>
         <div
           v-if="!$device.isMobile || !drawer"
           id="map-wrap"
-          :style="`height: 88vh; width: ${$device.isMobile ? 90 : 75}vw`"
+          :style="`height: 88vh; width: ${$device.isMobile ? 90 : 75}vw;`"
         >
           <no-ssr>
             <l-map
@@ -92,7 +94,7 @@
 
     data () {
       return {
-        mapZoom: 18,
+        mapZoom: 17,
         mapCenter: [40, 40],
         mapUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         mapBounds: [],
@@ -132,13 +134,13 @@
         }));
 
       this.polygon.latLngs = locationsByType.border
-        .map(it => [Number(it.latitude), Number(it.longitude)]);
+        ?.map(it => [Number(it.latitude), Number(it.longitude)]);
 
       this.mapBounds = locationsByType.bound
-        .map(it => [Number(it.latitude), Number(it.longitude)])
+        ?.map(it => [Number(it.latitude), Number(it.longitude)])
         .slice(0, 2);
 
-      const center = locationsByType.center[0];
+      const center = locationsByType.center?.[0];
       if (!!center) {
         this.mapCenter = [Number(center.latitude), Number(center.longitude)];
       }

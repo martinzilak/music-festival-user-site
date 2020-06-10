@@ -31,5 +31,9 @@
   "schedule": "Schedule",
   "news": "News",
   "favoritesOnly": "Show only favorite performances",
-  "stages": "Stages"
+  "stages": "Stages",
+  "loginTitle": "Log in to an existing account",
+  "register": "Register",
+  "registerTitle": "Register an account",
+  "email": "E-mail"
 }

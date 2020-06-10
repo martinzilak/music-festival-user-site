@@ -173,8 +173,9 @@
       },
     },
 
-    created () {
+    async created () {
       this.$store.dispatch('setDrawer', !this.$device.isMobile);
+      await this.$store.dispatch('checkLoginStatus');
 
       if (this.$store.getters.isUserLoggedIn) {
         this.$i18n.setLocale(this.localLanguage);

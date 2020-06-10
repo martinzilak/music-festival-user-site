@@ -46,7 +46,8 @@ export default {
     'nuxt-leaflet',
     'nuxt-i18n',
     '@nuxtjs/moment',
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    'cookie-universal-nuxt',
   ],
   /*
   ** Axios module configuration

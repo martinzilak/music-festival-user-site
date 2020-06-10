@@ -1,5 +1,30 @@
 import Vuex from 'vuex';
-import {getUrl, LOGIN, USERS, PERFORMANCES} from "../plugins/settings";
+import {
+    getUrl,
+    LOGIN,
+    ME,
+    PERFORMANCES,
+    REGISTER,
+    COOKIE_NAME,
+    COOKIE_OPTIONS, ME_DEEP,
+} from "../plugins/settings";
+
+const login = (commit, res) => {
+    commit('setJwtToken', res.jwt);
+    commit('setUser', res.user);
+    commit('setLanguage', res.user.language.code ?? 'en');
+    commit('setFavorites', res.user.performances ?? []);
+};
+
+const logout = (commit) => {
+    commit('setJwtToken', '');
+    commit('setUser', {});
+    commit('setFavorites', []);
+};
+
+const authHeader = (jwt) => ({
+    'Authorization': `Bearer ${jwt}`,
+});
 
 const createStore = () => {
     return new Vuex.Store({
@@ -34,31 +59,87 @@ const createStore = () => {
                 commit('setDrawer', drawer);
             },
 
+            async checkLoginStatus({ commit }) {
+                const cookie = this.$cookies.get(COOKIE_NAME);
+                if (cookie !== '') {
+                    const response = this.$axios.$get(getUrl(ME), {
+                        headers: authHeader(cookie),
+                    });
+
+                    response
+                        .then(res => {
+                            const userDeep = this.$axios.$get(getUrl(ME_DEEP), {
+                                headers: authHeader(cookie),
+                            });
+                            userDeep.then(resDeep => {
+                                login(commit, { jwt: cookie, user: resDeep });
+                                this.$i18n.setLocale(res.language.code);
+                            });
+                        })
+                        .catch(_ => {
+                            logout(commit);
+                            this.$cookies.remove(COOKIE_NAME);
+                        });
+                } else {
+                    logout(commit);
+                    this.$cookies.remove(COOKIE_NAME);
+                }
+            },
+
             async login({ commit }, data) {
                 const response = this.$axios.$post(getUrl(LOGIN), data);
 
                 response
                     .then(res => {
-                        commit('setJwtToken', res.jwt);
-                        commit('setUser', res.user);
-                        commit('setLanguage', res.user.language.code);
+                        login(commit, res);
+                        this.$cookies.set(COOKIE_NAME, res.jwt, COOKIE_OPTIONS);
                         this.$i18n.setLocale(res.user.language.code);
-                        commit('setFavorites', res.user.performances);
                     })
                     .catch(_ => {
-                        commit('setJwtToken', '');
-                        commit('setUser', {});
-                        commit('setFavorites', []);
+                        logout(commit);
+                        this.$cookies.remove(COOKIE_NAME);
+                    });
+            },
+
+            async register({ commit }, data) {
+                const response = this.$axios.$post(getUrl(REGISTER), {
+                    ...data,
+                    language: {
+                        code: this.$i18n.locale,
+                    },
+                    performances: [],
+                });
+
+                response
+                    .then(res => {
+                        login(commit, res);
+                        this.$cookies.set(COOKIE_NAME, res.jwt, COOKIE_OPTIONS);
+                        this.$i18n.setLocale(res.user.language.code);
+                    })
+                    .catch(_ => {
+                        logout(commit);
+                        this.$cookies.remove(COOKIE_NAME);
                     });
             },
 
             logout({ commit }) {
-                commit('setJwtToken', '');
-                commit('setUser', {});
-                commit('setFavorites', []);
+                logout(commit);
+                this.$cookies.remove(COOKIE_NAME);
             },
 
-            changeLanguage({commit}, language) {
+            async changeLanguage({ commit, state }, language) {
+                if (state.jwt !== '') {
+                    await this.$axios({
+                        method: 'PUT',
+                        url: getUrl(ME),
+                        headers: authHeader(state.jwt),
+                        data: {
+                            language: {
+                                code: language,
+                            },
+                        }
+                    });
+                }
                 commit('setLanguage', language);
                 this.$i18n.setLocale(language);
             },
@@ -71,14 +152,14 @@ const createStore = () => {
                     newFavorite,
                 ];
 
-                // await this.$axios.$put(getUrl(USERS, state.user.id), {
-                //     data: {
-                //         performances: newFavorites,
-                //     },
-                //     headers: {
-                //         'Authorization': `Bearer ${state.jwt}`,
-                //     }
-                // });
+                await this.$axios({
+                    method: 'PUT',
+                    url: getUrl(ME),
+                    headers: authHeader(state.jwt),
+                    data: {
+                        performances: newFavorites,
+                    }
+                });
 
                 commit('setFavorites', newFavorites);
             },
@@ -86,14 +167,14 @@ const createStore = () => {
             async removeFavorite({ commit, state }, performance) {
                 const newFavorites = state.favorites.filter(p => p.id !== performance.id);
 
-                // await this.$axios.$put(`${getUrl(USERS)}/${state.user.id}`, {
-                //     data: {
-                //         performances: newFavorites,
-                //     },
-                //     headers: {
-                //         'Authorization': `Bearer ${state.jwt}`,
-                //     }
-                // });
+                await this.$axios({
+                    method: 'PUT',
+                    url: getUrl(ME),
+                    headers: authHeader(state.jwt),
+                    data: {
+                        performances: newFavorites,
+                    }
+                });
 
                 commit('setFavorites', newFavorites);
             },
@@ -113,7 +194,7 @@ const createStore = () => {
                 return state.language;
             },
             isFavorite: (state) => (performance) => {
-                return !!state.favorites.find(p => p.id === performance?.id);
+                return !!state.favorites?.find(p => p.id === performance?.id);
             },
         },
     });

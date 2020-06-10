@@ -14,6 +14,7 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/device": "^1.2.7",
     "@nuxtjs/moment": "^1.6.1",
+    "cookie-universal-nuxt": "^2.1.4",
     "lodash.template": "^4.5.0",
     "nuxt": "^2.11.0",
     "nuxt-i18n": "^6.12.2",

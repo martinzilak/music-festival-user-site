@@ -4,7 +4,10 @@ export const LOCATIONS = 'locations';
 export const ARTISTS = 'artists';
 export const PERFORMANCES = 'performances';
 export const LOGIN = 'auth/local';
+export const REGISTER = `${LOGIN}/register`;
 export const USERS = 'users';
+export const ME = `${USERS}/me`;
+export const ME_DEEP = `${USERS}/me-deep`;
 export const MESSAGES = 'messages';
 export const STAGES = 'stages';
 
@@ -24,3 +27,9 @@ export const groupByParam = (items, param) => items.reduce(
     }),
     {},
 );
+
+export const COOKIE_NAME = 'festival-login-token';
+export const COOKIE_OPTIONS = {
+    path: '/',
+    maxAge: 60 * 60 * 24 * 7,
+};

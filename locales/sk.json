@@ -31,5 +31,9 @@
   "schedule": "Harmonogram",
   "news": "Novinky",
   "favoritesOnly": "Zobraziť iba obľúbené vystúpenia",
-  "stages": "Pódiá"
+  "stages": "Pódiá",
+  "loginTitle": "Prihlás sa do existujúceho účtu",
+  "register": "Registrovať",
+  "registerTitle": "Zaregistruj si nový účet",
+  "email": "E-mail"
 }
