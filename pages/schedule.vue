@@ -36,9 +36,11 @@
     const DATE_FORMAT = 'YYYY-MM-DD';
     const TIME_FORMAT = 'YYYY-MM-DD HH:mm';
     const STAGE_COLORS = {
-        'Stage A': 'green',
-        'Stage B': 'blue',
-        'Stage C': 'yellow',
+        0: 'green',
+        1: 'blue',
+        2: 'yellow',
+        3: 'brown',
+        4: 'orange',
         fallback: 'grey',
     };
     const FAVORITE_COLOR = 'red';
@@ -73,10 +75,11 @@
             this.events = performances.map(p => ({
                 name: p.artist.name,
                 stage: p.stage.name,
+                stageId: p.stage.id,
                 start: this.$moment(p.start).format(TIME_FORMAT),
                 end: this.$moment(p.end).format(TIME_FORMAT),
                 performance: p,
-                color: this.isFavorite(p) ? FAVORITE_COLOR : STAGE_COLORS[p.stage.name] ?? STAGE_COLORS.fallback,
+                color: this.isFavorite(p) ? FAVORITE_COLOR : STAGE_COLORS[p.stage.id % 5] ?? STAGE_COLORS.fallback,
             }));
 
             const dateRange = performances.reduce((result, p) => ({
@@ -137,7 +140,7 @@
 
             unsetFavorite(event) {
                 this.$store.dispatch('removeFavorite', event.performance);
-                event.color = STAGE_COLORS[event.stage] ?? STAGE_COLORS.fallback;
+                event.color = STAGE_COLORS[event.stageId % 5] ?? STAGE_COLORS.fallback;
             },
         },
     }
