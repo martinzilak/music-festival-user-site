@@ -13,3 +13,9 @@
 
 ### Localization
 * https://nuxt-community.github.io/nuxt-i18n/
+
+### Device detection
+* https://github.com/nuxt-community/device-module
+
+### Cookie manipulation
+* https://github.com/microcipcip/cookie-universal/tree/master/packages/cookie-universal-nuxt
