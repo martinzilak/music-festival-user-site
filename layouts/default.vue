@@ -116,6 +116,11 @@
             title: 'plan',
             to: '/plan'
           },
+          {
+            icon: 'mdi-information',
+            title: 'info',
+            to: '/info'
+          },
         ],
         account: {
           icon: 'mdi-account',

@@ -35,5 +35,6 @@
   "loginTitle": "Prihlás sa do existujúceho účtu",
   "register": "Registrovať",
   "registerTitle": "Zaregistruj si nový účet",
-  "email": "E-mail"
+  "email": "E-mail",
+  "infoTitle": "Informácie"
 }

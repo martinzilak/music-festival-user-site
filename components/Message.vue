@@ -31,8 +31,12 @@
                 return this.$store.getters.getLanguage;
             },
 
+            detail() {
+                return this.message.detail.find(d => d.language.code === this.language);
+            },
+
             formattedName() {
-                return this.message.name.find(n => n.language.code === this.language).text;
+                return this.detail?.name;
             },
 
             formattedDatetime() {
@@ -40,7 +44,7 @@
             },
 
             formattedDescription() {
-                return this.message.description.find(d => d.language.code === this.language).text;
+                return this.detail?.text;
             },
         },
     }
