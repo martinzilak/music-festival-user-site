@@ -38,7 +38,7 @@
     const STAGE_COLORS = {
         0: 'green',
         1: 'blue',
-        2: 'yellow',
+        2: 'pink',
         3: 'brown',
         4: 'orange',
         fallback: 'grey',
@@ -113,12 +113,13 @@
 
             formatEventName({ input }) {
                 return `
-                    <h2>${input.name}</h2>
+                    <b>${input.name}</b>
                     <br />
-                    <h3>${input.stage}</h3>
-                    <h3>
+                    <b>${input.stage}</b>
+                    <br />
+                    <b>
                         ${this.$d(this.$moment(input.start), 'time')} - ${this.$d(this.$moment(input.end), 'time')}
-                    </h3>
+                    </b>
                 `;
             },
 
