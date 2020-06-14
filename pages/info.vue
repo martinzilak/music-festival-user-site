@@ -65,7 +65,7 @@
             filteredItems() {
                 return this.items
                     .filter(i => i.language.code === this.language)
-                    ?.sort((a, b) => a.name?.localeCompare(b.name ?? 'Z', [this.language()]));
+                    ?.sort((a, b) => a.name?.localeCompare(b.name ?? 'Z', [this.language]));
             },
 
             formattedDescription() {
