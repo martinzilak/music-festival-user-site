@@ -72,16 +72,26 @@
     </v-content>
 
     <v-footer
+      style="z-index: 6;"
       :fixed="fixed"
       app
     >
       <span>{{ $moment().format('YYYY') }} Žilák</span>
+
+      <v-spacer />
+
+      <social-buttons
+        :social="social"
+      />
     </v-footer>
   </v-app>
 </template>
 
 <script>
+  import SocialButtons from "../components/SocialButtons";
+  import {getUrl, SOCIAL} from "../plugins/settings";
   export default {
+    components: {SocialButtons},
     data () {
       return {
         fixed: false,
@@ -127,7 +137,8 @@
           title: 'account',
           to: '/login'
         },
-        title: 'title'
+        title: 'title',
+        social: {},
       }
     },
 
@@ -179,6 +190,8 @@
     },
 
     async created () {
+      this.social = await this.$axios.$get(getUrl(SOCIAL));
+
       this.$store.dispatch('setDrawer', !this.$device.isMobile);
       await this.$store.dispatch('checkLoginStatus');
 
